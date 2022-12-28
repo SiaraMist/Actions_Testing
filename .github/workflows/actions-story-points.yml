@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.event.issue.assignee.login }}
-        run: gh issue comment $ISSUE --body '👋 Hi @$ASSIGNEE, it looks like you closed this issue. Don't forget to populate the `Story point correction` field!'
+        run: gh issue comment $ISSUE --body 'Hi @$ASSIGNEE, it looks like you closed this issue. Don't forget to populate the `Story point correction` field!'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.html_url }}
