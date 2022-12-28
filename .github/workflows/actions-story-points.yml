@@ -1,6 +1,8 @@
 on:
   issues:
     types: [closed]
+permissions: 
+  issues: write
 jobs:
   comment_when_closed:
     runs-on: ubuntu-latest
