@@ -5,7 +5,7 @@ jobs:
   comment_when_closed:
     runs-on: ubuntu-latest
     steps: 
-      - run: gh issue comment $ISSUE --body "Hi @$ASSIGNEE, it looks like you closed this issue. Don't forget to populate the Story Point Correction field!"
+      - run: gh issue comment $ISSUE --body ":wave: @$ASSIGNEE It looks like you closed this issue. Don't forget to populate the Story Point Correction field!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.html_url }}
