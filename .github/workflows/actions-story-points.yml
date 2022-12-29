@@ -11,7 +11,7 @@ jobs:
   comment_when_closed:
     runs-on: ubuntu-latest
     steps: 
-      - if: ${{ github.event.issue.assignee.login && !contains(github.event.issue.labels.*.name, 'duplicate', 'bug', 'enhancement') }}
+      - if: ${{ github.event.issue.assignee.login && !contains(github.event.issue.labels.*.name, 'duplicate') }}
         run: gh issue comment $ISSUE --body "👋 Hi @$ASSIGNEE, it looks like you closed this issue. Don't forget to populate the **Story point correction** field for the focus team project!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
