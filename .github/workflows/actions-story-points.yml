@@ -11,6 +11,30 @@ jobs:
   comment_when_closed:
     runs-on: ubuntu-latest
     steps: 
+      - name: Check if this issue is assigned to a member of the docs team
+        uses: actions/github-script@626af12fe9a53dc2972b48385e7fe7dec79145c9
+        id: assigned-to-member
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            const assigned_to = github.event.issue.assignee.login
+            const teamMembers = await github.request(
+              `/orgs/github/teams/docs/members?per_page=100`
+            )
+            const logins = teamMembers.data.map(member => member.login)
+            if (logins.includes(assigned_to)) {
+              console.log(`This issue is assigned to ${assigned_to} (on the docs team).`)
+              return 'true'
+            }
+            console.log(`This workflow was triggered by ${assigned_to} (not on the docs team), so no action will be taken.`)
+            return 'false'
+      - name: Exit if not triggered by a docs team member
+        if: steps.triggered-by-member.outputs.result == 'false'
+        run: |
+          echo Aborting. This workflow only runs on issues assigned to a member of the docs team.
+          exit 1
+      - name: Comment on relevant issues
       - if: |
           github.event.issue.assignee.login && 
           !contains(github.event.issue.labels.*.name, 'duplicate') && 
