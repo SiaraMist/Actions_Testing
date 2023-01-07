@@ -29,13 +29,15 @@ jobs:
             }
             console.log(`This workflow was triggered by ${assigned_to} (not on the docs team), so no action will be taken.`)
             return 'false'
+            
       - name: Exit if not triggered by a docs team member
         if: steps.assigned-to-member.outputs.result == 'false'
         run: |
           echo Aborting. This workflow only runs on issues assigned to a member of the docs team.
           exit 1
+          
       - name: Comment on relevant issues
-      - if: |
+        if: |
           github.event.issue.assignee.login && 
           !contains(github.event.issue.labels.*.name, 'duplicate') && 
           !contains(github.event.issue.labels.*.name, 'enhancement')
