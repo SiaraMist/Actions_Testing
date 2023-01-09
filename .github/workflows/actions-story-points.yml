@@ -15,7 +15,7 @@ jobs:
         uses: actions/github-script@626af12fe9a53dc2972b48385e7fe7dec79145c9
         id: assigned-to-member
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.ACTIONS_TESTING }}
           result-encoding: string
           script: |
             const assigned_to = context.payload.issue.assignee
