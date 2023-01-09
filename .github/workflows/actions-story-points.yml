@@ -18,16 +18,16 @@ jobs:
           github-token: ${{ secrets.ACTIONS_TESTING }}
           result-encoding: string
           script: |
-            const assigned_to = context.payload.issue.assignee
+            const issue_assignee = context.payload.issue.assignee
             const teamMembers = await github.request(
               `/orgs/github/teams/docs/members?per_page=100`
             )
             const logins = teamMembers.data.map(member => member.login)
-            if (logins.includes(assigned_to)) {
-              console.log(`This issue is assigned to ${assigned_to} (on the docs team).`)
+            if (logins.includes(issue_assignee)) {
+              console.log(`This issue is assigned to ${issue_assignee} (on the docs team).`)
               return 'true'
             }
-            console.log(`This workflow was triggered by ${assigned_to} (not on the docs team), so no action will be taken.`)
+            console.log(`This workflow was triggered by ${issue_assignee} (not on the docs team), so no action will be taken.`)
             return 'false'
             
       - name: Exit if not triggered by a docs team member
