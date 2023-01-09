@@ -18,7 +18,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
-            const assigned_to = context.payload.issue.assigned
+            const assigned_to = context.payload.issue.assignee
             const teamMembers = await github.request(
               `/orgs/github/teams/docs/members?per_page=100`
             )
