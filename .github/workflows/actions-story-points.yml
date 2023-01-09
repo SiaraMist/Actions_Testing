@@ -14,22 +14,20 @@ jobs:
       - name: Check if this issue is assigned to a member of the docs team
         uses: actions/github-script@626af12fe9a53dc2972b48385e7fe7dec79145c9
         id: assigned-to-member
-        env:
-          ASSIGNEE: ${{ github.event.issue.assignee.login }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
-            #const assigned_to = github.event.issue.assignee.login
+            const assigned_to = context.payload.issue.assigned
             const teamMembers = await github.request(
               `/orgs/github/teams/docs/members?per_page=100`
             )
             const logins = teamMembers.data.map(member => member.login)
-            if (logins.includes(env.ASSIGNEE)) {
-              console.log(`This issue is assigned to ${env.ASSIGNEE} (on the docs team).`)
+            if (logins.includes(assigned_to)) {
+              console.log(`This issue is assigned to ${assigned_to} (on the docs team).`)
               return 'true'
             }
-            console.log(`This workflow was triggered by ${env.ASSIGNEE} (not on the docs team), so no action will be taken.`)
+            console.log(`This workflow was triggered by ${assigned_to} (not on the docs team), so no action will be taken.`)
             return 'false'
             
       - name: Exit if not triggered by a docs team member
