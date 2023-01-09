@@ -18,7 +18,7 @@ jobs:
           github-token: ${{ secrets.Classic_ACTIONS_TESTING }}
           result-encoding: string
           script: |
-            const issue_assignee = context.payload.issue.assignee
+            const issue_assignee = context.payload.issue.assignee.login
             const teamMembers = await github.request(
               `/orgs/github/teams/docs/members?per_page=100`
             )
