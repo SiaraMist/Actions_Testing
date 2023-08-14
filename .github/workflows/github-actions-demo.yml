@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   Explore-GitHub-Actions:
+    name: Exploring GitHub Actions
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
