@@ -1,0 +1,17 @@
+name: Comment on issues with specific labels
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  add-comment:
+    if: github.event.label.name == 'capital letters' || github.event.label.name == 'question'     
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Comment on the issue
+        run: |
+          gh issue comment $ISSUE --body "Tag a person @SiaraMist! Leave a comment on the issue."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.html_url }}
