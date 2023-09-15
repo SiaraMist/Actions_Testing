@@ -6,7 +6,7 @@ on:
 
 jobs:
   add-comment:
-    if: github.event.label.name == 'Capital Letters' || github.event.label.name == 'question'     
+    if: github.event.label.name == 'capital letters' || github.event.label.name == 'question'     
     runs-on: ubuntu-latest  
     steps:
       - name: Comment on the issue
