@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+jobs:
+  selected-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the environment to STDOUT
+        run: echo  The environment is ${{ env.GITHUB_ENV }} 
