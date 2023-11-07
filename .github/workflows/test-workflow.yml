@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print the environment to STDOUT
-        run: echo  The environment is ${{ env.GITHUB_ENV }} 
+        run: echo The environment is ${{ github.event.inputs.environment }} 
