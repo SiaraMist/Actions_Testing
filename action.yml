@@ -1,0 +1,14 @@
+name: 'CompActionPath'
+description: 'Tests GITHUB_ACTION_PATH'
+author: 'siaramist'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: test
+      shell: bash
+      run: |
+        env
+    - name: hello
+      shell: bash
+      run: echo "Hello world"
