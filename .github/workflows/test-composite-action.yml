@@ -1,0 +1,32 @@
+name: Composite Action Path
+
+on: workflow_dispatch
+
+jobs:
+  action-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: siaramist/actions_testing@main
+  action-subpath:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: siaramist/actions_testing/test@main
+  action-nested-subpath:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: siaramist/actions_testing/test/nested@main
+  local-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+  local-subpath:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./test
+  local-nested-subpath:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./test/nested
