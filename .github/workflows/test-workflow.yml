@@ -18,3 +18,7 @@ jobs:
         run: echo The environment is ${{ github.event.inputs.environment }} 
       - name: Print milestone
         run: echo The ${{ github.event.pull_request.title }} milestone is ${{ github.event.pull_request.milestone.state }}.
+      - name: Call reusable workflow
+        uses: ./.github/workflows/reusable-workflow.yml
+        with:
+          context-test: it_me
