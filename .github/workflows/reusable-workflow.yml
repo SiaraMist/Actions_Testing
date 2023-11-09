@@ -6,7 +6,7 @@ on:
        context-test:
         description: 'Testing using inputs context here.'
         required: false
-        default: ${{ inputs.test-value }}-test
+        default: '${{ inputs.test-value }}-test'
         type: string
 
 jobs:
