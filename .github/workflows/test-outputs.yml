@@ -1,0 +1,15 @@
+name: Test GITHUB_OUTPUT
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  Read-output-file-names:
+    name: read-file-names
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "Step 1: $GITHUB_OUTPUT"
+      - name: Step 2
+        run: echo "Step 2: $GITHUB_OUTPUT"
+  
